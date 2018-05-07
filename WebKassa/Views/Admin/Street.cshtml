@@ -1,1 +1,18 @@
 ﻿@Html.DropDownList("street", Model as SelectList, "Выберите Улицу", new { @class = "form-control" })
+<script>
+    //Отправка Улицы чтобы получить номера домов
+    $("#street").on("change", function () {
+        var street = $("#street").val();
+        $.ajax({
+            type: 'POST',
+            url: '/Admin/Build',
+            data: { street: street },
+            success: function (data) {
+                $('#buildDiv').html(data);
+            },
+            error: function (xhr, str) {
+                alert('Возникла ошибка: ' + xhr.responseCode);
+            }
+        });
+    });
+</script>

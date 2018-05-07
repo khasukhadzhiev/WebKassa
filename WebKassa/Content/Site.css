@@ -16,7 +16,10 @@ textarea {
     max-width: 280px;
 }
 
-
-.find-control{
-    margin-bottom:10px;
+.searchControls {
+    list-style-type:none;
+    border-bottom:1px solid black;
+}
+.searchControls li{
+    margin-bottom: 10px;
 }

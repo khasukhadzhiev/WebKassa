@@ -1,34 +1,28 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Поиск";
 }
-
-<div id="regionDiv" class="find-control">
-    @Html.DropDownList("region", ViewBag.Regions as SelectList, "Выберите район", new { @class = "form-control" })
-</div>
-
-<div id="townDiv" class="find-control">
-    @Html.DropDownList("town", Enumerable.Empty<SelectListItem>(), "Выберите город", new { @class = "form-control" })
-</div>
-
-<div id="streetDiv" class="find-control">
-    @Html.DropDownList("street", Enumerable.Empty<SelectListItem>(), "Выберите Улицу", new { @class = "form-control" })
-</div>
-
-<div id="buildDiv" class="find-control">
-    @Html.TextBox("build", null, null, new { @placeholder = "Номер дома", @class = "form-control" })
-    @Html.TextBox("kvartira", null, null, new { @placeholder = "Номер квартиры", @class = "form-control" })
-    @Html.TextBox("licShet", null, null, new { @placeholder = "Лиц. счет", @class = "form-control" })
-</div>
-
+<h4>Введите данные для поиска</h4>
+<ul class="searchControls">
+    <li id="regionDiv">@Html.DropDownList("region", ViewBag.Regions as SelectList, "Выберите район", new { @class = "form-control" })</li>
+    <li id="townDiv">@Html.DropDownList("town", Enumerable.Empty<SelectListItem>(), "Выберите город", new { @class = "form-control" })</li>
+    <li id="streetDiv">@Html.DropDownList("street", Enumerable.Empty<SelectListItem>(), "Выберите Улицу", new { @class = "form-control" })</li>
+    <li id="buildDiv"> @Html.DropDownList("build", Enumerable.Empty<SelectListItem>(), "Выберите номер дома", new { @class = "form-control" })</li>
+    <li>@Html.TextBox("kvartira", null, null, new { @placeholder = "Номер квартиры", @class = "form-control" })</li>
+    <li>@Html.TextBox("licShet", null, null, new { @placeholder = "Лиц. счет", @class = "form-control" })</li>
+    <li>@Html.TextBox("fio", null, null, new { @placeholder = "ФИО", @class = "form-control" })</li>
+    <li><input type="button" id="search" value="Поиск" class="btn btn-default" /></li>
+</ul>
+    
+<div id="searchResult"></div>
+    
 <script>
-
     //Отправка Района чтобы получить города
     $("#region").on("change", function () {
         var reg = $("#region").val();
         $.ajax({
             type: 'POST',
             url: '/Admin/Town',
-            data: { region: reg},
+            data: { region: reg },
             success: function (data) {
                 $('#townDiv').html(data);
             },
@@ -38,4 +32,26 @@
         });
     });
 
+    //Нажатие кнопки Поиск
+    $("#search").on("click", function () {
+        $.ajax({
+            type: 'POST',
+            url: '/Admin/SearchResult',
+            data: {
+                region: $("#region").val(),
+                town: $("#town").val(),
+                street: $("#street").val(),
+                build: $("#build").val(),
+                kvartira: $("#kvartira").val(),
+                licShet: $("#licShet").val(),
+                fio: $("#fio").val()
+            },
+            success: function (data) {
+                $('#searchResult').html(data);
+            },
+            error: function (xhr, str) {
+                alert('Возникла ошибка: ' + xhr.responseCode);
+            }
+        });
+    });
 </script>

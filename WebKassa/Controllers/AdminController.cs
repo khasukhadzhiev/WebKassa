@@ -7,6 +7,7 @@ using WebKassa.Models;
 
 namespace WebKassa.Controllers
 {
+    //Данный контроллер нужен лишь для поиска. Все корректирующие действия производятся в контроллере Manage    
     [Authorize]
     public class AdminController : Controller
     {
@@ -19,7 +20,6 @@ namespace WebKassa.Controllers
             ViewBag.Regions = regions;
             return View();
         }
-
 
         //возвращает список нас.пунктов в зависимости от района
         [HttpPost]
@@ -36,5 +36,21 @@ namespace WebKassa.Controllers
             SelectList streets = new SelectList(energo.RSTREETS.Where(s => s.TOWN_ID == town).Select(t => t), "ID", "STREET");
             return PartialView(streets);
         }
-    }
-}
+
+        //возвращает список домов в зависимости от улицы
+        [HttpPost]
+        public ActionResult Build(int street)
+        {
+            SelectList builds = new SelectList(energo.VW_BUILDINGS.Where(s => s.STREET_ID == street).Select(t => t), "ID", "HOUSE");
+            return PartialView(builds);
+        }
+
+        [HttpPost]
+        public ActionResult SearchResult(string region, string town, string street, string build, string kvartira, string licShet, string fio)
+        {   
+            
+            return PartialView();        
+        }                                
+    }                                    
+}                                        
+                                         
