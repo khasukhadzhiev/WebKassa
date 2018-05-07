@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div id="regionDiv" class="find-control">
+    @Html.DropDownList("region", ViewBag.Regions as SelectList, "Выберите район", new { @class = "form-control" })
+</div>
+
+<div id="townDiv" class="find-control">
+    @Html.DropDownList("town", Enumerable.Empty<SelectListItem>(), "Выберите город", new { @class = "form-control" })
+</div>
+
+<div id="streetDiv" class="find-control">
+    @Html.DropDownList("street", Enumerable.Empty<SelectListItem>(), "Выберите Улицу", new { @class = "form-control" })
+</div>
+
+<div id="buildDiv" class="find-control">
+    @Html.TextBox("build", null, null, new { @placeholder = "Номер дома", @class = "form-control" })
+    @Html.TextBox("kvartira", null, null, new { @placeholder = "Номер квартиры", @class = "form-control" })
+    @Html.TextBox("licShet", null, null, new { @placeholder = "Лиц. счет", @class = "form-control" })
+</div>
+
+<script>
+
+    //Отправка Района чтобы получить города
+    $("#region").on("change", function () {
+        var reg = $("#region").val();
+        $.ajax({
+            type: 'POST',
+            url: '/Admin/Town',
+            data: { region: reg},
+            success: function (data) {
+                $('#townDiv').html(data);
+            },
+            error: function (xhr, str) {
+                alert('Возникла ошибка: ' + xhr.responseCode);
+            }
+        });
+    });
+
+</script>

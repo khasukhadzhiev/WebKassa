@@ -1,0 +1,18 @@
+﻿@Html.DropDownList("town", Model as SelectList, "Выберите город", new { @class = "form-control" })
+<script>
+    //Отправка Города чтобы получить улицы
+    $("#town").on("change", function () {
+        var town = $("#town").val();
+        $.ajax({
+            type: 'POST',
+            url: '/Admin/Street',
+            data: { town: town },
+            success: function (data) {
+                $('#streetDiv').html(data);
+            },
+            error: function (xhr, str) {
+                alert('Возникла ошибка: ' + xhr.responseCode);
+            }
+        });
+    });
+</script>

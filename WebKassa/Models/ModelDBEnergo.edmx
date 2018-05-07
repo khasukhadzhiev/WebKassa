@@ -1,0 +1,452 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище ENERGO_GRModel" Provider="FirebirdSql.Data.FirebirdClient" ProviderManifestToken="2.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="PAS_RREGION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="60" Unicode="true" />
+          <Property Name="CREATEDATE" Type="date" Nullable="false" />
+          <Property Name="CREATEUSERID" Type="int" />
+          <Property Name="MODIFYDATE" Type="date" />
+          <Property Name="MODIFYUSERID" Type="int" />
+          <Property Name="PROVINCE_ID" Type="int" />
+          <Property Name="LOCAL" Type="int" />
+          <Property Name="SHOW_GRP_LIST" Type="int" />
+          <Property Name="NAME2" Type="varchar" MaxLength="60" Unicode="true" />
+          <Property Name="RO" Type="char" MaxLength="2" Unicode="false" />
+          <Property Name="FIAS_CODE" Type="varchar" MaxLength="36" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PAS_RSTREET">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="60" Unicode="true" />
+          <Property Name="CREATEDATE" Type="date" Nullable="false" />
+          <Property Name="CREATEUSERID" Type="int" />
+          <Property Name="MODIFYDATE" Type="date" />
+          <Property Name="MODIFYUSERID" Type="int" />
+        </EntityType>
+        <EntityType Name="PAS_RTOWN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="60" Unicode="true" />
+          <Property Name="TOWN_TYPE" Type="varchar" MaxLength="256" Unicode="true" />
+          <Property Name="TOWN_TYPE_ID" Type="int" />
+          <Property Name="CODECALL" Type="varchar" MaxLength="10" Unicode="true" />
+          <Property Name="CODECALLADD" Type="varchar" MaxLength="10" Unicode="true" />
+          <Property Name="REFSERVICE" Type="varchar" MaxLength="10" Unicode="true" />
+          <Property Name="CODE" Type="int" Nullable="false" />
+          <Property Name="LOCAL" Type="smallint" Nullable="false" />
+          <Property Name="VILLAGE" Type="smallint" Nullable="false" />
+          <Property Name="CREATEUSERID" Type="int" />
+          <Property Name="CREATEDATE" Type="date" Nullable="false" />
+          <Property Name="MODIFYUSERID" Type="int" />
+          <Property Name="MODIFYDATE" Type="date" />
+          <Property Name="TOWN_AREA" Type="int" />
+          <Property Name="FULL_NAME" Type="varchar" MaxLength="256" Unicode="true" />
+          <Property Name="REGION_ID" Type="int" />
+          <Property Name="PL_ID" Type="char" MaxLength="3" Unicode="false" />
+          <Property Name="FIAS_CODE" Type="varchar" MaxLength="36" Unicode="true" />
+        </EntityType>
+        <EntityType Name="RSTREETS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="STREET" Type="varchar" MaxLength="120" Unicode="true" Nullable="false" />
+          <Property Name="CODE" Type="int" Nullable="false" />
+          <Property Name="TOWN_ID" Type="int" Nullable="false" />
+          <Property Name="CREATEDATE" Type="date" Nullable="false" />
+          <Property Name="CREATEUSERID" Type="int" />
+          <Property Name="MODIFYDATE" Type="date" />
+          <Property Name="MODIFYUSERID" Type="int" />
+          <Property Name="CONTR" Type="int" />
+          <Property Name="FIAS_CODE" Type="varchar" MaxLength="36" Unicode="true" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Firebird.Firebird.VW_BUILDINGS" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="VW_BUILDINGS">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="CREATEDATE" />
+            <PropertyRef Name="BUILDNAME" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="20" Unicode="true" />
+          <Property Name="STREET_ID" Type="int" />
+          <Property Name="HOUSE" Type="varchar" MaxLength="16" Unicode="true" />
+          <Property Name="CORPS" Type="varchar" MaxLength="3" Unicode="true" />
+          <Property Name="REGNUM" Type="varchar" MaxLength="16" Unicode="true" />
+          <Property Name="OWNER_ID" Type="int" />
+          <Property Name="OWNERSHIPTYPE_ID" Type="int" />
+          <Property Name="MAINTKOEF" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="ZKX_ID" Type="int" />
+          <Property Name="BUILDDATE" Type="date" />
+          <Property Name="DATA_R" Type="date" />
+          <Property Name="DETERIOR" Type="int" />
+          <Property Name="MATERIAL" Type="int" />
+          <Property Name="CREATEDATE" Type="date" Nullable="false" />
+          <Property Name="MODIFYDATE" Type="date" />
+          <Property Name="HEIGHT" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="GEU" Type="int" />
+          <Property Name="LIFT" Type="smallint" />
+          <Property Name="LIFT_H" Type="smallint" />
+          <Property Name="C_HV" Type="smallint" />
+          <Property Name="C_GV" Type="smallint" />
+          <Property Name="C_BATH" Type="smallint" />
+          <Property Name="C_TIP" Type="smallint" />
+          <Property Name="C_GR" Type="smallint" />
+          <Property Name="C_OTOP" Type="smallint" />
+          <Property Name="C_TBO" Type="smallint" />
+          <Property Name="C_MU" Type="smallint" />
+          <Property Name="C_PPA" Type="smallint" />
+          <Property Name="MODIFYUSERID" Type="int" />
+          <Property Name="CREATEUSERID" Type="int" />
+          <Property Name="ETAZH" Type="smallint" />
+          <Property Name="IS_PASSPORT" Type="smallint" />
+          <Property Name="PLAN_PATH" Type="varchar" MaxLength="120" Unicode="true" />
+          <Property Name="C_GAZ" Type="smallint" />
+          <Property Name="C_CANAL" Type="smallint" />
+          <Property Name="ACCOMP" Type="int" />
+          <Property Name="ACCOMP2" Type="int" />
+          <Property Name="BUILDNAME" Type="smallint" Nullable="false" />
+          <Property Name="DOORCOUNT" Type="int" />
+          <Property Name="NUM" Type="varchar" MaxLength="32765" Unicode="true" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6035: В связи "FK_RSTREETS_TOWN" имеются столбцы, которые не являются частью ключа таблицы на первичной стороне связи. Связь исключена.
+        <Association Name="FK_RSTREETS_TOWN" />-->
+        <EntityContainer Name="Хранилище ENERGO_GRModelContainer">
+          <EntitySet Name="PAS_RREGION" EntityType="Self.PAS_RREGION" Schema="Firebird" store:Type="Tables" />
+          <EntitySet Name="PAS_RSTREET" EntityType="Self.PAS_RSTREET" Schema="Firebird" store:Type="Tables" />
+          <EntitySet Name="PAS_RTOWN" EntityType="Self.PAS_RTOWN" Schema="Firebird" store:Type="Tables" />
+          <EntitySet Name="RSTREETS" EntityType="Self.RSTREETS" Schema="Firebird" store:Type="Tables" />
+          <EntitySet Name="VW_BUILDINGS" EntityType="Self.VW_BUILDINGS" store:Type="Views" store:Schema="Firebird">
+            <DefiningQuery>SELECT 
+"A"."ID" AS "ID", 
+"A"."NAME" AS "NAME", 
+"A"."STREET_ID" AS "STREET_ID", 
+"A"."HOUSE" AS "HOUSE", 
+"A"."CORPS" AS "CORPS", 
+"A"."REGNUM" AS "REGNUM", 
+"A"."OWNER_ID" AS "OWNER_ID", 
+"A"."OWNERSHIPTYPE_ID" AS "OWNERSHIPTYPE_ID", 
+"A"."MAINTKOEF" AS "MAINTKOEF", 
+"A"."ZKX_ID" AS "ZKX_ID", 
+"A"."BUILDDATE" AS "BUILDDATE", 
+"A"."DATA_R" AS "DATA_R", 
+"A"."DETERIOR" AS "DETERIOR", 
+"A"."MATERIAL" AS "MATERIAL", 
+"A"."CREATEDATE" AS "CREATEDATE", 
+"A"."MODIFYDATE" AS "MODIFYDATE", 
+"A"."HEIGHT" AS "HEIGHT", 
+"A"."GEU" AS "GEU", 
+"A"."LIFT" AS "LIFT", 
+"A"."LIFT_H" AS "LIFT_H", 
+"A"."C_HV" AS "C_HV", 
+"A"."C_GV" AS "C_GV", 
+"A"."C_BATH" AS "C_BATH", 
+"A"."C_TIP" AS "C_TIP", 
+"A"."C_GR" AS "C_GR", 
+"A"."C_OTOP" AS "C_OTOP", 
+"A"."C_TBO" AS "C_TBO", 
+"A"."C_MU" AS "C_MU", 
+"A"."C_PPA" AS "C_PPA", 
+"A"."MODIFYUSERID" AS "MODIFYUSERID", 
+"A"."CREATEUSERID" AS "CREATEUSERID", 
+"A"."ETAZH" AS "ETAZH", 
+"A"."IS_PASSPORT" AS "IS_PASSPORT", 
+"A"."PLAN_PATH" AS "PLAN_PATH", 
+"A"."C_GAZ" AS "C_GAZ", 
+"A"."C_CANAL" AS "C_CANAL", 
+"A"."ACCOMP" AS "ACCOMP", 
+"A"."ACCOMP2" AS "ACCOMP2", 
+"A"."BUILDNAME" AS "BUILDNAME", 
+"A"."DOORCOUNT" AS "DOORCOUNT", 
+"A"."NUM" AS "NUM"
+FROM "VW_BUILDINGS" AS "A"</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ENERGO_GRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="PAS_RREGION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="CREATEDATE" Type="DateTime" Nullable="false" />
+          <Property Name="CREATEUSERID" Type="Int32" />
+          <Property Name="MODIFYDATE" Type="DateTime" />
+          <Property Name="MODIFYUSERID" Type="Int32" />
+          <Property Name="PROVINCE_ID" Type="Int32" />
+          <Property Name="LOCAL" Type="Int32" />
+          <Property Name="SHOW_GRP_LIST" Type="Int32" />
+          <Property Name="NAME2" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="RO" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+          <Property Name="FIAS_CODE" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PAS_RSTREET">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="CREATEDATE" Type="DateTime" Nullable="false" />
+          <Property Name="CREATEUSERID" Type="Int32" />
+          <Property Name="MODIFYDATE" Type="DateTime" />
+          <Property Name="MODIFYUSERID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="PAS_RTOWN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="TOWN_TYPE" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="TOWN_TYPE_ID" Type="Int32" />
+          <Property Name="CODECALL" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CODECALLADD" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="REFSERVICE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CODE" Type="Int32" Nullable="false" />
+          <Property Name="LOCAL" Type="Int16" Nullable="false" />
+          <Property Name="VILLAGE" Type="Int16" Nullable="false" />
+          <Property Name="CREATEUSERID" Type="Int32" />
+          <Property Name="CREATEDATE" Type="DateTime" Nullable="false" />
+          <Property Name="MODIFYUSERID" Type="Int32" />
+          <Property Name="MODIFYDATE" Type="DateTime" />
+          <Property Name="TOWN_AREA" Type="Int32" />
+          <Property Name="FULL_NAME" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="REGION_ID" Type="Int32" />
+          <Property Name="PL_ID" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="FIAS_CODE" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="VW_BUILDINGS">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="CREATEDATE" />
+            <PropertyRef Name="BUILDNAME" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="STREET_ID" Type="Int32" />
+          <Property Name="HOUSE" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="CORPS" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="REGNUM" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="OWNER_ID" Type="Int32" />
+          <Property Name="OWNERSHIPTYPE_ID" Type="Int32" />
+          <Property Name="MAINTKOEF" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="ZKX_ID" Type="Int32" />
+          <Property Name="BUILDDATE" Type="DateTime" />
+          <Property Name="DATA_R" Type="DateTime" />
+          <Property Name="DETERIOR" Type="Int32" />
+          <Property Name="MATERIAL" Type="Int32" />
+          <Property Name="CREATEDATE" Type="DateTime" Nullable="false" />
+          <Property Name="MODIFYDATE" Type="DateTime" />
+          <Property Name="HEIGHT" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="GEU" Type="Int32" />
+          <Property Name="LIFT" Type="Int16" />
+          <Property Name="LIFT_H" Type="Int16" />
+          <Property Name="C_HV" Type="Int16" />
+          <Property Name="C_GV" Type="Int16" />
+          <Property Name="C_BATH" Type="Int16" />
+          <Property Name="C_TIP" Type="Int16" />
+          <Property Name="C_GR" Type="Int16" />
+          <Property Name="C_OTOP" Type="Int16" />
+          <Property Name="C_TBO" Type="Int16" />
+          <Property Name="C_MU" Type="Int16" />
+          <Property Name="C_PPA" Type="Int16" />
+          <Property Name="MODIFYUSERID" Type="Int32" />
+          <Property Name="CREATEUSERID" Type="Int32" />
+          <Property Name="ETAZH" Type="Int16" />
+          <Property Name="IS_PASSPORT" Type="Int16" />
+          <Property Name="PLAN_PATH" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="C_GAZ" Type="Int16" />
+          <Property Name="C_CANAL" Type="Int16" />
+          <Property Name="ACCOMP" Type="Int32" />
+          <Property Name="ACCOMP2" Type="Int32" />
+          <Property Name="BUILDNAME" Type="Int16" Nullable="false" />
+          <Property Name="DOORCOUNT" Type="Int32" />
+          <Property Name="NUM" Type="String" MaxLength="32765" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityContainer Name="ENERGO_GREntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PAS_RREGION" EntityType="Self.PAS_RREGION" />
+          <EntitySet Name="PAS_RSTREET" EntityType="Self.PAS_RSTREET" />
+          <EntitySet Name="PAS_RTOWN" EntityType="Self.PAS_RTOWN" />
+          <EntitySet Name="VW_BUILDINGS" EntityType="Self.VW_BUILDINGS" />
+          <EntitySet Name="RSTREETS" EntityType="ENERGO_GRModel.RSTREETS" />
+        </EntityContainer>
+        <EntityType Name="RSTREETS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="STREET" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="CODE" Type="Int32" Nullable="false" />
+          <Property Name="TOWN_ID" Type="Int32" Nullable="false" />
+          <Property Name="CREATEDATE" Type="DateTime" Nullable="false" />
+          <Property Name="CREATEUSERID" Type="Int32" />
+          <Property Name="MODIFYDATE" Type="DateTime" />
+          <Property Name="MODIFYUSERID" Type="Int32" />
+          <Property Name="CONTR" Type="Int32" />
+          <Property Name="FIAS_CODE" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ENERGO_GRModelContainer" CdmEntityContainer="ENERGO_GREntities">
+          <EntitySetMapping Name="PAS_RREGION">
+            <EntityTypeMapping TypeName="ENERGO_GRModel.PAS_RREGION">
+              <MappingFragment StoreEntitySet="PAS_RREGION">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="CREATEDATE" ColumnName="CREATEDATE" />
+                <ScalarProperty Name="CREATEUSERID" ColumnName="CREATEUSERID" />
+                <ScalarProperty Name="MODIFYDATE" ColumnName="MODIFYDATE" />
+                <ScalarProperty Name="MODIFYUSERID" ColumnName="MODIFYUSERID" />
+                <ScalarProperty Name="PROVINCE_ID" ColumnName="PROVINCE_ID" />
+                <ScalarProperty Name="LOCAL" ColumnName="LOCAL" />
+                <ScalarProperty Name="SHOW_GRP_LIST" ColumnName="SHOW_GRP_LIST" />
+                <ScalarProperty Name="NAME2" ColumnName="NAME2" />
+                <ScalarProperty Name="RO" ColumnName="RO" />
+                <ScalarProperty Name="FIAS_CODE" ColumnName="FIAS_CODE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PAS_RSTREET">
+            <EntityTypeMapping TypeName="ENERGO_GRModel.PAS_RSTREET">
+              <MappingFragment StoreEntitySet="PAS_RSTREET">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="CREATEDATE" ColumnName="CREATEDATE" />
+                <ScalarProperty Name="CREATEUSERID" ColumnName="CREATEUSERID" />
+                <ScalarProperty Name="MODIFYDATE" ColumnName="MODIFYDATE" />
+                <ScalarProperty Name="MODIFYUSERID" ColumnName="MODIFYUSERID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PAS_RTOWN">
+            <EntityTypeMapping TypeName="ENERGO_GRModel.PAS_RTOWN">
+              <MappingFragment StoreEntitySet="PAS_RTOWN">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="TOWN_TYPE" ColumnName="TOWN_TYPE" />
+                <ScalarProperty Name="TOWN_TYPE_ID" ColumnName="TOWN_TYPE_ID" />
+                <ScalarProperty Name="CODECALL" ColumnName="CODECALL" />
+                <ScalarProperty Name="CODECALLADD" ColumnName="CODECALLADD" />
+                <ScalarProperty Name="REFSERVICE" ColumnName="REFSERVICE" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="LOCAL" ColumnName="LOCAL" />
+                <ScalarProperty Name="VILLAGE" ColumnName="VILLAGE" />
+                <ScalarProperty Name="CREATEUSERID" ColumnName="CREATEUSERID" />
+                <ScalarProperty Name="CREATEDATE" ColumnName="CREATEDATE" />
+                <ScalarProperty Name="MODIFYUSERID" ColumnName="MODIFYUSERID" />
+                <ScalarProperty Name="MODIFYDATE" ColumnName="MODIFYDATE" />
+                <ScalarProperty Name="TOWN_AREA" ColumnName="TOWN_AREA" />
+                <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+                <ScalarProperty Name="REGION_ID" ColumnName="REGION_ID" />
+                <ScalarProperty Name="PL_ID" ColumnName="PL_ID" />
+                <ScalarProperty Name="FIAS_CODE" ColumnName="FIAS_CODE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_BUILDINGS">
+            <EntityTypeMapping TypeName="ENERGO_GRModel.VW_BUILDINGS">
+              <MappingFragment StoreEntitySet="VW_BUILDINGS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="STREET_ID" ColumnName="STREET_ID" />
+                <ScalarProperty Name="HOUSE" ColumnName="HOUSE" />
+                <ScalarProperty Name="CORPS" ColumnName="CORPS" />
+                <ScalarProperty Name="REGNUM" ColumnName="REGNUM" />
+                <ScalarProperty Name="OWNER_ID" ColumnName="OWNER_ID" />
+                <ScalarProperty Name="OWNERSHIPTYPE_ID" ColumnName="OWNERSHIPTYPE_ID" />
+                <ScalarProperty Name="MAINTKOEF" ColumnName="MAINTKOEF" />
+                <ScalarProperty Name="ZKX_ID" ColumnName="ZKX_ID" />
+                <ScalarProperty Name="BUILDDATE" ColumnName="BUILDDATE" />
+                <ScalarProperty Name="DATA_R" ColumnName="DATA_R" />
+                <ScalarProperty Name="DETERIOR" ColumnName="DETERIOR" />
+                <ScalarProperty Name="MATERIAL" ColumnName="MATERIAL" />
+                <ScalarProperty Name="CREATEDATE" ColumnName="CREATEDATE" />
+                <ScalarProperty Name="MODIFYDATE" ColumnName="MODIFYDATE" />
+                <ScalarProperty Name="HEIGHT" ColumnName="HEIGHT" />
+                <ScalarProperty Name="GEU" ColumnName="GEU" />
+                <ScalarProperty Name="LIFT" ColumnName="LIFT" />
+                <ScalarProperty Name="LIFT_H" ColumnName="LIFT_H" />
+                <ScalarProperty Name="C_HV" ColumnName="C_HV" />
+                <ScalarProperty Name="C_GV" ColumnName="C_GV" />
+                <ScalarProperty Name="C_BATH" ColumnName="C_BATH" />
+                <ScalarProperty Name="C_TIP" ColumnName="C_TIP" />
+                <ScalarProperty Name="C_GR" ColumnName="C_GR" />
+                <ScalarProperty Name="C_OTOP" ColumnName="C_OTOP" />
+                <ScalarProperty Name="C_TBO" ColumnName="C_TBO" />
+                <ScalarProperty Name="C_MU" ColumnName="C_MU" />
+                <ScalarProperty Name="C_PPA" ColumnName="C_PPA" />
+                <ScalarProperty Name="MODIFYUSERID" ColumnName="MODIFYUSERID" />
+                <ScalarProperty Name="CREATEUSERID" ColumnName="CREATEUSERID" />
+                <ScalarProperty Name="ETAZH" ColumnName="ETAZH" />
+                <ScalarProperty Name="IS_PASSPORT" ColumnName="IS_PASSPORT" />
+                <ScalarProperty Name="PLAN_PATH" ColumnName="PLAN_PATH" />
+                <ScalarProperty Name="C_GAZ" ColumnName="C_GAZ" />
+                <ScalarProperty Name="C_CANAL" ColumnName="C_CANAL" />
+                <ScalarProperty Name="ACCOMP" ColumnName="ACCOMP" />
+                <ScalarProperty Name="ACCOMP2" ColumnName="ACCOMP2" />
+                <ScalarProperty Name="BUILDNAME" ColumnName="BUILDNAME" />
+                <ScalarProperty Name="DOORCOUNT" ColumnName="DOORCOUNT" />
+                <ScalarProperty Name="NUM" ColumnName="NUM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RSTREETS">
+            <EntityTypeMapping TypeName="ENERGO_GRModel.RSTREETS">
+              <MappingFragment StoreEntitySet="RSTREETS">
+                <ScalarProperty Name="FIAS_CODE" ColumnName="FIAS_CODE" />
+                <ScalarProperty Name="CONTR" ColumnName="CONTR" />
+                <ScalarProperty Name="MODIFYUSERID" ColumnName="MODIFYUSERID" />
+                <ScalarProperty Name="MODIFYDATE" ColumnName="MODIFYDATE" />
+                <ScalarProperty Name="CREATEUSERID" ColumnName="CREATEUSERID" />
+                <ScalarProperty Name="CREATEDATE" ColumnName="CREATEDATE" />
+                <ScalarProperty Name="TOWN_ID" ColumnName="TOWN_ID" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="STREET" ColumnName="STREET" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
