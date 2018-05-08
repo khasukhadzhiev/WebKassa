@@ -30,5 +30,7 @@ namespace WebKassa.Models
         public virtual DbSet<PAS_RTOWN> PAS_RTOWN { get; set; }
         public virtual DbSet<VW_BUILDINGS> VW_BUILDINGS { get; set; }
         public virtual DbSet<RSTREETS> RSTREETS { get; set; }
+        public virtual DbSet<V_ABONS> V_ABONS { get; set; }
+        public virtual DbSet<DOGOVORS> DOGOVORS { get; set; }
     }
 }

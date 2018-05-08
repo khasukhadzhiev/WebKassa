@@ -18,8 +18,14 @@ textarea {
 
 .searchControls {
     list-style-type:none;
-    border-bottom:1px solid black;
+    display:inline-grid;
+    margin-top:0;
 }
 .searchControls li{
     margin-bottom: 10px;
+}
+
+.searchResult{
+    max-height:400px;
+    overflow:auto;
 }

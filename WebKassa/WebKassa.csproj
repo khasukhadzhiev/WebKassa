@@ -206,8 +206,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DOGOVORS.cs">
+      <DependentUpon>ModelDBEnergo.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ModelDBEnergo.Context.cs">
       <AutoGen>True</AutoGen>
@@ -240,6 +244,9 @@
     <Compile Include="Models\VW_BUILDINGS.cs">
       <DependentUpon>ModelDBEnergo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\V_ABONS.cs">
+      <DependentUpon>ModelDBEnergo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -264,6 +271,7 @@
     <Content Include="Views\Admin\Town.cshtml" />
     <Content Include="Views\Admin\Street.cshtml" />
     <Content Include="Views\Admin\Build.cshtml" />
+    <Content Include="Views\Admin\SearchResult.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -273,6 +281,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Manage\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

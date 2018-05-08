@@ -5,6 +5,73 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Хранилище ENERGO_GRModel" Provider="FirebirdSql.Data.FirebirdClient" ProviderManifestToken="2.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DOGOVORS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ABONENT_ID" Type="int" Nullable="false" />
+          <Property Name="SERVICE_ID" Type="int" Nullable="false" />
+          <Property Name="SUPPLIER_ID" Type="int" />
+          <Property Name="SUPPLIER_DEPT" Type="int" />
+          <Property Name="MANAG_ID" Type="int" />
+          <Property Name="DOC_NUM" Type="varchar" MaxLength="20" Unicode="true" />
+          <Property Name="DOC_DATE" Type="date" />
+          <Property Name="BDATE" Type="date" Nullable="false" />
+          <Property Name="EDATE" Type="date" />
+          <Property Name="GEN_TARIFF" Type="smallint" Nullable="false" />
+          <Property Name="GEN_NORM" Type="smallint" Nullable="false" />
+          <Property Name="LASTPAY" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="LASTPAYDATE" Type="date" />
+          <Property Name="LASTCHARGE" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="LASTCHARGEDATE" Type="date" />
+          <Property Name="LASTCHARGE_NORM" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="LASTCHARGE_BASE" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="LASTCHARGE_EXEMPTS" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="LAST_SUBSIDY" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="LAST_SUBSIDY_DATE" Type="date" />
+          <Property Name="NEW_CHARGE" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="NEW_CHARGE_NORM" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="NEW_CHARGE_BASE" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="NEW_CHARGE_EXEMPT" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="NEW_CHARGE_OUT" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="NEW_CHARGE_IN" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="NEW_CHARGE_DATE" Type="date" />
+          <Property Name="RESPONSIBLE" Type="varchar" MaxLength="20" Unicode="true" />
+          <Property Name="GOROD_SALDO" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="GOROD_SALDO_DATE" Type="date" />
+          <Property Name="NOTE" Type="varchar" MaxLength="1000" Unicode="true" />
+          <Property Name="BALANCE" Type="numeric" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="CREATEDATE" Type="date" />
+          <Property Name="MODIFYDATE" Type="date" />
+          <Property Name="IS_ACTIVE" Type="smallint" Nullable="false" />
+          <Property Name="CREATEUSERID" Type="int" />
+          <Property Name="MODIFYUSERID" Type="int" />
+          <Property Name="PENI" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="QUANT_SALDO" Type="numeric" Precision="15" Scale="3" Nullable="false" />
+          <Property Name="EXPORT_SALDO" Type="smallint" />
+          <Property Name="AVG_POTR" Type="numeric" Precision="15" Scale="4" />
+          <Property Name="RETLG" Type="varchar" MaxLength="500" Unicode="true" />
+          <Property Name="UDSTN" Type="varchar" MaxLength="500" Unicode="true" />
+          <Property Name="IMPORT" Type="smallint" Nullable="false" />
+          <Property Name="ADD_DESS" Type="smallint" Nullable="false" />
+          <Property Name="DEPOSIT_DATE" Type="date" />
+          <Property Name="CONTROLER_ID" Type="int" Nullable="false" />
+          <Property Name="SINC_KOEF" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="NOTUSED_SUBSIDY" Type="numeric" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="CENTS" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="MOD_NU" Type="int" />
+          <Property Name="STOP_A" Type="int" />
+          <Property Name="TYPE_DOG" Type="int" />
+          <Property Name="COM_USHET" Type="int" />
+          <Property Name="PL_OBEM" Type="int" />
+          <Property Name="POK_CACHESTVA" Type="int" />
+          <Property Name="CONTRACTUALBASIS" Type="int" />
+          <Property Name="GIS_CODE" Type="varchar" MaxLength="255" Unicode="true" />
+          <Property Name="GIS_STATUS" Type="varchar" MaxLength="255" Unicode="true" />
+          <Property Name="GIS_EXPORT" Type="int" />
+          <Property Name="GIS_POK_K" Type="int" />
+        </EntityType>
         <EntityType Name="PAS_RREGION">
           <Key>
             <PropertyRef Name="ID" />
@@ -73,6 +140,53 @@
           <Property Name="FIAS_CODE" Type="varchar" MaxLength="36" Unicode="true" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Firebird.Firebird.V_ABONS" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="V_ABONS">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="IS_ACTIVE" />
+            <PropertyRef Name="BUILDING_ID" />
+          </Key>
+          <Property Name="BIRTHDATE" Type="date" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="G_LICSCHET" Type="varchar" MaxLength="20" Unicode="true" />
+          <Property Name="UETS_LIC" Type="varchar" MaxLength="16" Unicode="true" />
+          <Property Name="TOWN" Type="varchar" MaxLength="60" Unicode="true" />
+          <Property Name="STREET" Type="varchar" MaxLength="120" Unicode="true" />
+          <Property Name="HOUSE" Type="varchar" MaxLength="16" Unicode="true" />
+          <Property Name="CORPS" Type="varchar" MaxLength="3" Unicode="true" />
+          <Property Name="APPARTS" Type="int" />
+          <Property Name="LETTER" Type="varchar" MaxLength="3" Unicode="true" />
+          <Property Name="NAME" Type="varchar" MaxLength="60" Unicode="true" />
+          <Property Name="ZKX_NAME" Type="varchar" MaxLength="255" Unicode="true" />
+          <Property Name="PHONE" Type="varchar" MaxLength="20" Unicode="true" />
+          <Property Name="BALANCE" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="NOTE" Type="varchar" MaxLength="1000" Unicode="true" />
+          <Property Name="REGION_ID" Type="int" />
+          <Property Name="TOWN_ID" Type="int" />
+          <Property Name="TOWN_AREA_ID" Type="int" />
+          <Property Name="STREET_ID" Type="int" />
+          <Property Name="CLIENT_ID" Type="int" />
+          <Property Name="ZKX_ID" Type="int" />
+          <Property Name="ZKX_ORGCODE" Type="int" />
+          <Property Name="IS_ACTIVE" Type="smallint" Nullable="false" />
+          <Property Name="NLS" Type="varchar" MaxLength="20" Unicode="true" />
+          <Property Name="SUPER_ABONENT" Type="int" />
+          <Property Name="BUILDING_ID" Type="int" Nullable="false" />
+          <Property Name="OCC_FULLSPACE" Type="numeric" Precision="15" Scale="3" />
+          <Property Name="ROOMS" Type="int" />
+          <Property Name="REALTYTYPE" Type="int" />
+          <Property Name="GIS_EXPORT" Type="int" />
+          <Property Name="ADDRESS" Type="varchar" MaxLength="32765" Unicode="true" StoreGeneratedPattern="Computed" />
+          <Property Name="TOWN_FULL" Type="varchar" MaxLength="32765" Unicode="true" StoreGeneratedPattern="Computed" />
+          <Property Name="GIS_ID" Type="varchar" MaxLength="50" Unicode="true" />
+          <Property Name="GIS_CODE" Type="varchar" MaxLength="50" Unicode="true" />
+          <Property Name="COD_FIAS" Type="varchar" MaxLength="10" Unicode="true" />
+          <Property Name="TYPE_LS" Type="int" />
+          <Property Name="STATUS_AP" Type="int" />
+          <Property Name="TYPE_OSNOV" Type="int" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Firebird.Firebird.VW_BUILDINGS" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="VW_BUILDINGS">
           <Key>
@@ -126,10 +240,53 @@
 предупреждение 6035: В связи "FK_RSTREETS_TOWN" имеются столбцы, которые не являются частью ключа таблицы на первичной стороне связи. Связь исключена.
         <Association Name="FK_RSTREETS_TOWN" />-->
         <EntityContainer Name="Хранилище ENERGO_GRModelContainer">
+          <EntitySet Name="DOGOVORS" EntityType="Self.DOGOVORS" Schema="Firebird" store:Type="Tables" />
           <EntitySet Name="PAS_RREGION" EntityType="Self.PAS_RREGION" Schema="Firebird" store:Type="Tables" />
           <EntitySet Name="PAS_RSTREET" EntityType="Self.PAS_RSTREET" Schema="Firebird" store:Type="Tables" />
           <EntitySet Name="PAS_RTOWN" EntityType="Self.PAS_RTOWN" Schema="Firebird" store:Type="Tables" />
           <EntitySet Name="RSTREETS" EntityType="Self.RSTREETS" Schema="Firebird" store:Type="Tables" />
+          <EntitySet Name="V_ABONS" EntityType="Self.V_ABONS" store:Type="Views" store:Schema="Firebird">
+            <DefiningQuery>SELECT 
+"A"."BIRTHDATE" AS "BIRTHDATE", 
+"A"."ID" AS "ID", 
+"A"."G_LICSCHET" AS "G_LICSCHET", 
+"A"."UETS_LIC" AS "UETS_LIC", 
+"A"."TOWN" AS "TOWN", 
+"A"."STREET" AS "STREET", 
+"A"."HOUSE" AS "HOUSE", 
+"A"."CORPS" AS "CORPS", 
+"A"."APPARTS" AS "APPARTS", 
+"A"."LETTER" AS "LETTER", 
+"A"."NAME" AS "NAME", 
+"A"."ZKX_NAME" AS "ZKX_NAME", 
+"A"."PHONE" AS "PHONE", 
+"A"."BALANCE" AS "BALANCE", 
+"A"."NOTE" AS "NOTE", 
+"A"."REGION_ID" AS "REGION_ID", 
+"A"."TOWN_ID" AS "TOWN_ID", 
+"A"."TOWN_AREA_ID" AS "TOWN_AREA_ID", 
+"A"."STREET_ID" AS "STREET_ID", 
+"A"."CLIENT_ID" AS "CLIENT_ID", 
+"A"."ZKX_ID" AS "ZKX_ID", 
+"A"."ZKX_ORGCODE" AS "ZKX_ORGCODE", 
+"A"."IS_ACTIVE" AS "IS_ACTIVE", 
+"A"."NLS" AS "NLS", 
+"A"."SUPER_ABONENT" AS "SUPER_ABONENT", 
+"A"."BUILDING_ID" AS "BUILDING_ID", 
+"A"."OCC_FULLSPACE" AS "OCC_FULLSPACE", 
+"A"."ROOMS" AS "ROOMS", 
+"A"."REALTYTYPE" AS "REALTYTYPE", 
+"A"."GIS_EXPORT" AS "GIS_EXPORT", 
+"A"."ADDRESS" AS "ADDRESS", 
+"A"."TOWN_FULL" AS "TOWN_FULL", 
+"A"."GIS_ID" AS "GIS_ID", 
+"A"."GIS_CODE" AS "GIS_CODE", 
+"A"."COD_FIAS" AS "COD_FIAS", 
+"A"."TYPE_LS" AS "TYPE_LS", 
+"A"."STATUS_AP" AS "STATUS_AP", 
+"A"."TYPE_OSNOV" AS "TYPE_OSNOV"
+FROM "V_ABONS" AS "A"</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="VW_BUILDINGS" EntityType="Self.VW_BUILDINGS" store:Type="Views" store:Schema="Firebird">
             <DefiningQuery>SELECT 
 "A"."ID" AS "ID", 
@@ -286,6 +443,8 @@ FROM "VW_BUILDINGS" AS "A"</DefiningQuery>
           <EntitySet Name="PAS_RTOWN" EntityType="Self.PAS_RTOWN" />
           <EntitySet Name="VW_BUILDINGS" EntityType="Self.VW_BUILDINGS" />
           <EntitySet Name="RSTREETS" EntityType="ENERGO_GRModel.RSTREETS" />
+          <EntitySet Name="V_ABONS" EntityType="ENERGO_GRModel.V_ABONS" />
+          <EntitySet Name="DOGOVORS" EntityType="ENERGO_GRModel.DOGOVORS" />
         </EntityContainer>
         <EntityType Name="RSTREETS">
           <Key>
@@ -301,6 +460,118 @@ FROM "VW_BUILDINGS" AS "A"</DefiningQuery>
           <Property Name="MODIFYUSERID" Type="Int32" />
           <Property Name="CONTR" Type="Int32" />
           <Property Name="FIAS_CODE" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="V_ABONS">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="IS_ACTIVE" />
+            <PropertyRef Name="BUILDING_ID" />
+          </Key>
+          <Property Name="BIRTHDATE" Type="DateTime" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="G_LICSCHET" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="UETS_LIC" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="TOWN" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="STREET" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="HOUSE" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="CORPS" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="APPARTS" Type="Int32" />
+          <Property Name="LETTER" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="NAME" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="ZKX_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PHONE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="BALANCE" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="NOTE" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="REGION_ID" Type="Int32" />
+          <Property Name="TOWN_ID" Type="Int32" />
+          <Property Name="TOWN_AREA_ID" Type="Int32" />
+          <Property Name="STREET_ID" Type="Int32" />
+          <Property Name="CLIENT_ID" Type="Int32" />
+          <Property Name="ZKX_ID" Type="Int32" />
+          <Property Name="ZKX_ORGCODE" Type="Int32" />
+          <Property Name="IS_ACTIVE" Type="Int16" Nullable="false" />
+          <Property Name="NLS" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SUPER_ABONENT" Type="Int32" />
+          <Property Name="BUILDING_ID" Type="Int32" Nullable="false" />
+          <Property Name="OCC_FULLSPACE" Type="Decimal" Precision="15" Scale="3" />
+          <Property Name="ROOMS" Type="Int32" />
+          <Property Name="REALTYTYPE" Type="Int32" />
+          <Property Name="GIS_EXPORT" Type="Int32" />
+          <Property Name="ADDRESS" Type="String" MaxLength="32765" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="TOWN_FULL" Type="String" MaxLength="32765" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="GIS_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GIS_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="COD_FIAS" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TYPE_LS" Type="Int32" />
+          <Property Name="STATUS_AP" Type="Int32" />
+          <Property Name="TYPE_OSNOV" Type="Int32" />
+        </EntityType>
+        <EntityType Name="DOGOVORS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ABONENT_ID" Type="Int32" Nullable="false" />
+          <Property Name="SERVICE_ID" Type="Int32" Nullable="false" />
+          <Property Name="SUPPLIER_ID" Type="Int32" />
+          <Property Name="SUPPLIER_DEPT" Type="Int32" />
+          <Property Name="MANAG_ID" Type="Int32" />
+          <Property Name="DOC_NUM" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DOC_DATE" Type="DateTime" />
+          <Property Name="BDATE" Type="DateTime" Nullable="false" />
+          <Property Name="EDATE" Type="DateTime" />
+          <Property Name="GEN_TARIFF" Type="Int16" Nullable="false" />
+          <Property Name="GEN_NORM" Type="Int16" Nullable="false" />
+          <Property Name="LASTPAY" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="LASTPAYDATE" Type="DateTime" />
+          <Property Name="LASTCHARGE" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="LASTCHARGEDATE" Type="DateTime" />
+          <Property Name="LASTCHARGE_NORM" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="LASTCHARGE_BASE" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="LASTCHARGE_EXEMPTS" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="LAST_SUBSIDY" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="LAST_SUBSIDY_DATE" Type="DateTime" />
+          <Property Name="NEW_CHARGE" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="NEW_CHARGE_NORM" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="NEW_CHARGE_BASE" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="NEW_CHARGE_EXEMPT" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="NEW_CHARGE_OUT" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="NEW_CHARGE_IN" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="NEW_CHARGE_DATE" Type="DateTime" />
+          <Property Name="RESPONSIBLE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="GOROD_SALDO" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="GOROD_SALDO_DATE" Type="DateTime" />
+          <Property Name="NOTE" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="BALANCE" Type="Decimal" Nullable="false" Precision="15" Scale="2" />
+          <Property Name="CREATEDATE" Type="DateTime" />
+          <Property Name="MODIFYDATE" Type="DateTime" />
+          <Property Name="IS_ACTIVE" Type="Int16" Nullable="false" />
+          <Property Name="CREATEUSERID" Type="Int32" />
+          <Property Name="MODIFYUSERID" Type="Int32" />
+          <Property Name="PENI" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="QUANT_SALDO" Type="Decimal" Nullable="false" Precision="15" Scale="3" />
+          <Property Name="EXPORT_SALDO" Type="Int16" />
+          <Property Name="AVG_POTR" Type="Decimal" Precision="15" Scale="4" />
+          <Property Name="RETLG" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="UDSTN" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IMPORT" Type="Int16" Nullable="false" />
+          <Property Name="ADD_DESS" Type="Int16" Nullable="false" />
+          <Property Name="DEPOSIT_DATE" Type="DateTime" />
+          <Property Name="CONTROLER_ID" Type="Int32" Nullable="false" />
+          <Property Name="SINC_KOEF" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="NOTUSED_SUBSIDY" Type="Decimal" Nullable="false" Precision="15" Scale="2" />
+          <Property Name="CENTS" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="MOD_NU" Type="Int32" />
+          <Property Name="STOP_A" Type="Int32" />
+          <Property Name="TYPE_DOG" Type="Int32" />
+          <Property Name="COM_USHET" Type="Int32" />
+          <Property Name="PL_OBEM" Type="Int32" />
+          <Property Name="POK_CACHESTVA" Type="Int32" />
+          <Property Name="CONTRACTUALBASIS" Type="Int32" />
+          <Property Name="GIS_CODE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GIS_STATUS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GIS_EXPORT" Type="Int32" />
+          <Property Name="GIS_POK_K" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -422,6 +693,118 @@ FROM "VW_BUILDINGS" AS "A"</DefiningQuery>
                 <ScalarProperty Name="TOWN_ID" ColumnName="TOWN_ID" />
                 <ScalarProperty Name="CODE" ColumnName="CODE" />
                 <ScalarProperty Name="STREET" ColumnName="STREET" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_ABONS">
+            <EntityTypeMapping TypeName="ENERGO_GRModel.V_ABONS">
+              <MappingFragment StoreEntitySet="V_ABONS">
+                <ScalarProperty Name="TYPE_OSNOV" ColumnName="TYPE_OSNOV" />
+                <ScalarProperty Name="STATUS_AP" ColumnName="STATUS_AP" />
+                <ScalarProperty Name="TYPE_LS" ColumnName="TYPE_LS" />
+                <ScalarProperty Name="COD_FIAS" ColumnName="COD_FIAS" />
+                <ScalarProperty Name="GIS_CODE" ColumnName="GIS_CODE" />
+                <ScalarProperty Name="GIS_ID" ColumnName="GIS_ID" />
+                <ScalarProperty Name="TOWN_FULL" ColumnName="TOWN_FULL" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="GIS_EXPORT" ColumnName="GIS_EXPORT" />
+                <ScalarProperty Name="REALTYTYPE" ColumnName="REALTYTYPE" />
+                <ScalarProperty Name="ROOMS" ColumnName="ROOMS" />
+                <ScalarProperty Name="OCC_FULLSPACE" ColumnName="OCC_FULLSPACE" />
+                <ScalarProperty Name="BUILDING_ID" ColumnName="BUILDING_ID" />
+                <ScalarProperty Name="SUPER_ABONENT" ColumnName="SUPER_ABONENT" />
+                <ScalarProperty Name="NLS" ColumnName="NLS" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="ZKX_ORGCODE" ColumnName="ZKX_ORGCODE" />
+                <ScalarProperty Name="ZKX_ID" ColumnName="ZKX_ID" />
+                <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
+                <ScalarProperty Name="STREET_ID" ColumnName="STREET_ID" />
+                <ScalarProperty Name="TOWN_AREA_ID" ColumnName="TOWN_AREA_ID" />
+                <ScalarProperty Name="TOWN_ID" ColumnName="TOWN_ID" />
+                <ScalarProperty Name="REGION_ID" ColumnName="REGION_ID" />
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+                <ScalarProperty Name="BALANCE" ColumnName="BALANCE" />
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+                <ScalarProperty Name="ZKX_NAME" ColumnName="ZKX_NAME" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="LETTER" ColumnName="LETTER" />
+                <ScalarProperty Name="APPARTS" ColumnName="APPARTS" />
+                <ScalarProperty Name="CORPS" ColumnName="CORPS" />
+                <ScalarProperty Name="HOUSE" ColumnName="HOUSE" />
+                <ScalarProperty Name="STREET" ColumnName="STREET" />
+                <ScalarProperty Name="TOWN" ColumnName="TOWN" />
+                <ScalarProperty Name="UETS_LIC" ColumnName="UETS_LIC" />
+                <ScalarProperty Name="G_LICSCHET" ColumnName="G_LICSCHET" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BIRTHDATE" ColumnName="BIRTHDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DOGOVORS">
+            <EntityTypeMapping TypeName="ENERGO_GRModel.DOGOVORS">
+              <MappingFragment StoreEntitySet="DOGOVORS">
+                <ScalarProperty Name="GIS_POK_K" ColumnName="GIS_POK_K" />
+                <ScalarProperty Name="GIS_EXPORT" ColumnName="GIS_EXPORT" />
+                <ScalarProperty Name="GIS_STATUS" ColumnName="GIS_STATUS" />
+                <ScalarProperty Name="GIS_CODE" ColumnName="GIS_CODE" />
+                <ScalarProperty Name="CONTRACTUALBASIS" ColumnName="CONTRACTUALBASIS" />
+                <ScalarProperty Name="POK_CACHESTVA" ColumnName="POK_CACHESTVA" />
+                <ScalarProperty Name="PL_OBEM" ColumnName="PL_OBEM" />
+                <ScalarProperty Name="COM_USHET" ColumnName="COM_USHET" />
+                <ScalarProperty Name="TYPE_DOG" ColumnName="TYPE_DOG" />
+                <ScalarProperty Name="STOP_A" ColumnName="STOP_A" />
+                <ScalarProperty Name="MOD_NU" ColumnName="MOD_NU" />
+                <ScalarProperty Name="CENTS" ColumnName="CENTS" />
+                <ScalarProperty Name="NOTUSED_SUBSIDY" ColumnName="NOTUSED_SUBSIDY" />
+                <ScalarProperty Name="SINC_KOEF" ColumnName="SINC_KOEF" />
+                <ScalarProperty Name="CONTROLER_ID" ColumnName="CONTROLER_ID" />
+                <ScalarProperty Name="DEPOSIT_DATE" ColumnName="DEPOSIT_DATE" />
+                <ScalarProperty Name="ADD_DESS" ColumnName="ADD_DESS" />
+                <ScalarProperty Name="IMPORT" ColumnName="IMPORT" />
+                <ScalarProperty Name="UDSTN" ColumnName="UDSTN" />
+                <ScalarProperty Name="RETLG" ColumnName="RETLG" />
+                <ScalarProperty Name="AVG_POTR" ColumnName="AVG_POTR" />
+                <ScalarProperty Name="EXPORT_SALDO" ColumnName="EXPORT_SALDO" />
+                <ScalarProperty Name="QUANT_SALDO" ColumnName="QUANT_SALDO" />
+                <ScalarProperty Name="PENI" ColumnName="PENI" />
+                <ScalarProperty Name="MODIFYUSERID" ColumnName="MODIFYUSERID" />
+                <ScalarProperty Name="CREATEUSERID" ColumnName="CREATEUSERID" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="MODIFYDATE" ColumnName="MODIFYDATE" />
+                <ScalarProperty Name="CREATEDATE" ColumnName="CREATEDATE" />
+                <ScalarProperty Name="BALANCE" ColumnName="BALANCE" />
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+                <ScalarProperty Name="GOROD_SALDO_DATE" ColumnName="GOROD_SALDO_DATE" />
+                <ScalarProperty Name="GOROD_SALDO" ColumnName="GOROD_SALDO" />
+                <ScalarProperty Name="RESPONSIBLE" ColumnName="RESPONSIBLE" />
+                <ScalarProperty Name="NEW_CHARGE_DATE" ColumnName="NEW_CHARGE_DATE" />
+                <ScalarProperty Name="NEW_CHARGE_IN" ColumnName="NEW_CHARGE_IN" />
+                <ScalarProperty Name="NEW_CHARGE_OUT" ColumnName="NEW_CHARGE_OUT" />
+                <ScalarProperty Name="NEW_CHARGE_EXEMPT" ColumnName="NEW_CHARGE_EXEMPT" />
+                <ScalarProperty Name="NEW_CHARGE_BASE" ColumnName="NEW_CHARGE_BASE" />
+                <ScalarProperty Name="NEW_CHARGE_NORM" ColumnName="NEW_CHARGE_NORM" />
+                <ScalarProperty Name="NEW_CHARGE" ColumnName="NEW_CHARGE" />
+                <ScalarProperty Name="LAST_SUBSIDY_DATE" ColumnName="LAST_SUBSIDY_DATE" />
+                <ScalarProperty Name="LAST_SUBSIDY" ColumnName="LAST_SUBSIDY" />
+                <ScalarProperty Name="LASTCHARGE_EXEMPTS" ColumnName="LASTCHARGE_EXEMPTS" />
+                <ScalarProperty Name="LASTCHARGE_BASE" ColumnName="LASTCHARGE_BASE" />
+                <ScalarProperty Name="LASTCHARGE_NORM" ColumnName="LASTCHARGE_NORM" />
+                <ScalarProperty Name="LASTCHARGEDATE" ColumnName="LASTCHARGEDATE" />
+                <ScalarProperty Name="LASTCHARGE" ColumnName="LASTCHARGE" />
+                <ScalarProperty Name="LASTPAYDATE" ColumnName="LASTPAYDATE" />
+                <ScalarProperty Name="LASTPAY" ColumnName="LASTPAY" />
+                <ScalarProperty Name="GEN_NORM" ColumnName="GEN_NORM" />
+                <ScalarProperty Name="GEN_TARIFF" ColumnName="GEN_TARIFF" />
+                <ScalarProperty Name="EDATE" ColumnName="EDATE" />
+                <ScalarProperty Name="BDATE" ColumnName="BDATE" />
+                <ScalarProperty Name="DOC_DATE" ColumnName="DOC_DATE" />
+                <ScalarProperty Name="DOC_NUM" ColumnName="DOC_NUM" />
+                <ScalarProperty Name="MANAG_ID" ColumnName="MANAG_ID" />
+                <ScalarProperty Name="SUPPLIER_DEPT" ColumnName="SUPPLIER_DEPT" />
+                <ScalarProperty Name="SUPPLIER_ID" ColumnName="SUPPLIER_ID" />
+                <ScalarProperty Name="SERVICE_ID" ColumnName="SERVICE_ID" />
+                <ScalarProperty Name="ABONENT_ID" ColumnName="ABONENT_ID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

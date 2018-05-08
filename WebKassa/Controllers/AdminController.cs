@@ -45,11 +45,42 @@ namespace WebKassa.Controllers
             return PartialView(builds);
         }
 
+        //Результат поиска
         [HttpPost]
-        public ActionResult SearchResult(string region, string town, string street, string build, string kvartira, string licShet, string fio)
-        {   
-            
-            return PartialView();        
+        public ActionResult SearchResult(int region, int town, int street, int build, int kvartira, string licShet, string fio)
+        {
+            if (licShet != "-1")
+            {
+                var resultsLicShet = energo.V_ABONS.AsParallel().Where(l => l.G_LICSCHET.ToUpper().Contains(licShet.ToUpper())).Select(l => l);
+                return PartialView(resultsLicShet);
+            }
+            else if(fio != "-1")
+            {
+                var resultsFio = energo.V_ABONS.AsParallel().Where(f => f.NAME.ToUpper().Contains(fio.ToUpper())).Select(f => f);
+                return PartialView(resultsFio);
+            }
+            else
+            {
+                var result = energo.V_ABONS.AsQueryable();
+
+                if (region != -1)
+                    result = result.Where(r => r.REGION_ID == region);
+
+                if (town != -1)
+                    result = result.Where(t => t.TOWN_ID == town);
+
+                if (street != -1)
+                    result = result.Where(t => t.STREET_ID == street);
+
+                if (build != -1)
+                    result = result.Where(t => t.BUILDING_ID == build);
+
+                if (kvartira != -1)
+                    result = result.Where(t => t.APPARTS == kvartira);
+
+
+                return PartialView(result.OrderBy(o=>o.ID));
+            }
         }                                
     }                                    
 }                                        

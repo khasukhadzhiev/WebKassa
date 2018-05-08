@@ -3,6 +3,7 @@
     //Отправка Города чтобы получить улицы
     $("#town").on("change", function () {
         var town = $("#town").val();
+        if (town == "") return;
         $.ajax({
             type: 'POST',
             url: '/Admin/Street',
@@ -11,7 +12,7 @@
                 $('#streetDiv').html(data);
             },
             error: function (xhr, str) {
-                alert('Возникла ошибка: ' + xhr.responseCode);
+                console.log("Выбрано все варинаты.");
             }
         });
     });

@@ -2,23 +2,27 @@
     ViewBag.Title = "Поиск";
 }
 <h4>Введите данные для поиска</h4>
+<hr />
 <ul class="searchControls">
     <li id="regionDiv">@Html.DropDownList("region", ViewBag.Regions as SelectList, "Выберите район", new { @class = "form-control" })</li>
     <li id="townDiv">@Html.DropDownList("town", Enumerable.Empty<SelectListItem>(), "Выберите город", new { @class = "form-control" })</li>
     <li id="streetDiv">@Html.DropDownList("street", Enumerable.Empty<SelectListItem>(), "Выберите Улицу", new { @class = "form-control" })</li>
     <li id="buildDiv"> @Html.DropDownList("build", Enumerable.Empty<SelectListItem>(), "Выберите номер дома", new { @class = "form-control" })</li>
+</ul>
+<ul class="searchControls">
     <li>@Html.TextBox("kvartira", null, null, new { @placeholder = "Номер квартиры", @class = "form-control" })</li>
     <li>@Html.TextBox("licShet", null, null, new { @placeholder = "Лиц. счет", @class = "form-control" })</li>
     <li>@Html.TextBox("fio", null, null, new { @placeholder = "ФИО", @class = "form-control" })</li>
     <li><input type="button" id="search" value="Поиск" class="btn btn-default" /></li>
 </ul>
     
-<div id="searchResult"></div>
+<div id="searchResult" class="searchResult"></div>
     
 <script>
     //Отправка Района чтобы получить города
     $("#region").on("change", function () {
         var reg = $("#region").val();
+        if (reg == "") return;
         $.ajax({
             type: 'POST',
             url: '/Admin/Town',
@@ -27,27 +31,30 @@
                 $('#townDiv').html(data);
             },
             error: function (xhr, str) {
-                alert('Возникла ошибка: ' + xhr.responseCode);
+                console.log("Выбрано все варинаты.");
             }
         });
     });
 
     //Нажатие кнопки Поиск
     $("#search").on("click", function () {
+        $('#searchResult').removeClass("border");
+        $('#searchResult').html("Идет загрузка...");
         $.ajax({
             type: 'POST',
             url: '/Admin/SearchResult',
             data: {
-                region: $("#region").val(),
-                town: $("#town").val(),
-                street: $("#street").val(),
-                build: $("#build").val(),
-                kvartira: $("#kvartira").val(),
-                licShet: $("#licShet").val(),
-                fio: $("#fio").val()
+                region: $("#region").val() == "" ? -1 : $("#region").val(),
+                town: $("#town").val() == "" ? -1 : $("#town").val(),
+                street: $("#street").val() == "" ? -1 : $("#street").val(),
+                build: $("#build").val() == "" ? -1 : $("#build").val(),
+                kvartira: $("#kvartira").val() == "" ? -1 : $("#kvartira").val(),
+                licShet: $("#licShet").val() == "" ? -1 : $("#licShet").val(),
+                fio: $("#fio").val() == "" ? -1 : $("#fio").val()
             },
             success: function (data) {
                 $('#searchResult').html(data);
+                $('#searchResult').addClass("border");
             },
             error: function (xhr, str) {
                 alert('Возникла ошибка: ' + xhr.responseCode);

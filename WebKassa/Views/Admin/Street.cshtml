@@ -3,6 +3,7 @@
     //Отправка Улицы чтобы получить номера домов
     $("#street").on("change", function () {
         var street = $("#street").val();
+        if (street == "") return;
         $.ajax({
             type: 'POST',
             url: '/Admin/Build',
@@ -11,7 +12,7 @@
                 $('#buildDiv').html(data);
             },
             error: function (xhr, str) {
-                alert('Возникла ошибка: ' + xhr.responseCode);
+                console.log("Выбрано все варинаты.");
             }
         });
     });
