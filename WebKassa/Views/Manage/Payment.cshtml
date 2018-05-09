@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Payment";
+}
+
+<h4>Прием платежей</h4>
+<hr />
+@{int i = 1;}
+<table class="table table-hover small border">
+    <thead class="thead-light">
+        <tr>
+            <th>#</th>
+            <th>Выбрать</th>
+            <th>Группа услуг</th>
+            <th>Тариф</th>
+            <th>Наименование поставщика</th>
+            <th>Задолженность/Переплата</th>
+            <th>Оплачено</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (WebKassa.Models.KassaModel k in Model)
+        {
+            if (k.RNAME.Contains("ИТОГО"))
+            {
+                <tr class="small">
+                    <th scope="row">@i</th>
+                    <td></td>
+                    <td>@k.RNAME</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td id="itog"></td>
+                </tr>
+                break;
+            }
+            <tr class="small">
+                <th scope="row">@i</th>
+                <td>@Html.CheckBox("vibor", false)</td>
+                <td>@k.RNAME</td>
+                <td>@k.RTARIFSTR</td>
+                <td>@k.RSUPPLIER_NAME</td>
+                <td>@k.BALANCE руб.</td>
+                <td class="d-inline-flex"><input type="button" value="Показания" class="btn btn-default small" /> @Html.TextBox($"summ{i}", null, new { @class = "form-control", @placeholder = "Текущая оплата", @type="number" })</td>
+            </tr>
+            i++;
+        }
+    </tbody>
+</table>
+<input type="button" value="Сохранить и распечатать" class="btn btn-default" />
+<script>
+
+    function Summa() {
+        var inputs = $("input[name^='summ']");
+        var sum = 0;
+        for (var i = 0; i < inputs.length; i++) {
+            sum += inputs[i].value;
+        }
+        $("#itog").html(sum);
+    }
+    $("input[name^='summ']").keypress(Summa);
+</script>

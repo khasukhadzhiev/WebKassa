@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebKassa.Models;
+using WebKassa.Models.DataSetKassaTableAdapters;
 
 namespace WebKassa.Controllers
 {
@@ -14,7 +15,11 @@ namespace WebKassa.Controllers
         // GET: Manage
         public ActionResult Payment(int v_abon_id)
         {
-            return View();
+            DataSetKassa dsKassa = new DataSetKassa();
+            PROC_CASHIER_SERVICESTableAdapter procTabAdap = new PROC_CASHIER_SERVICESTableAdapter();
+            procTabAdap.Fill(dsKassa.PROC_CASHIER_SERVICES, v_abon_id, null, null);
+            var kassa = dsKassa.PROC_CASHIER_SERVICES.AsEnumerable().Select(k => new KassaModel { RIS_ACTIVE= k.RIS_ACTIVE, RNAME= k.RNAME, RTARIFSTR= k.RTARIFSTR, BALANCE= k.BALANCE, RSUPPLIER_NAME= k.RSUPPLIER_NAME });
+            return View(kassa);
         }
     }
 }

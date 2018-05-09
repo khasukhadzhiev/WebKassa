@@ -177,6 +177,17 @@
     <Content Include="Models\ModelDBEnergo.edmx.diagram">
       <DependentUpon>ModelDBEnergo.edmx</DependentUpon>
     </Content>
+    <Content Include="Models\DataSetKassa.xsc">
+      <DependentUpon>DataSetKassa.xsd</DependentUpon>
+    </Content>
+    <None Include="Models\DataSetKassa.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetKassa.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Models\DataSetKassa.xss">
+      <DependentUpon>DataSetKassa.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -209,6 +220,11 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataSetKassa.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetKassa.xsd</DependentUpon>
     </Compile>
     <Compile Include="Models\DOGOVORS.cs">
       <DependentUpon>ModelDBEnergo.tt</DependentUpon>
@@ -272,6 +288,7 @@
     <Content Include="Views\Admin\Street.cshtml" />
     <Content Include="Views\Admin\Build.cshtml" />
     <Content Include="Views\Admin\SearchResult.cshtml" />
+    <Content Include="Views\Manage\Payment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -281,7 +298,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Manage\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

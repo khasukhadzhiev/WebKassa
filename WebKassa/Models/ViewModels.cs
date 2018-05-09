@@ -16,4 +16,12 @@ namespace WebKassa.Models
         [Display(Name = "Пароль")]
         public string Password { get; set; }
     }
+    public class KassaModel
+    {
+        public short RIS_ACTIVE { get; set; }
+        public string RNAME { get; set; }
+        public string RTARIFSTR { get; set; }
+        public decimal BALANCE { get; set; }
+        public string RSUPPLIER_NAME { get; set; }
+    }
 }
