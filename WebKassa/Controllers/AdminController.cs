@@ -78,7 +78,6 @@ namespace WebKassa.Controllers
                 if (kvartira != -1)
                     result = result.Where(t => t.APPARTS == kvartira);
 
-
                 return PartialView(result.OrderBy(o=>o.ID));
             }
         }                                

@@ -239,6 +239,9 @@
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6035: В связи "FK_RSTREETS_TOWN" имеются столбцы, которые не являются частью ключа таблицы на первичной стороне связи. Связь исключена.
         <Association Name="FK_RSTREETS_TOWN" />-->
+        
+        
+        
         <EntityContainer Name="Хранилище ENERGO_GRModelContainer">
           <EntitySet Name="DOGOVORS" EntityType="Self.DOGOVORS" Schema="Firebird" store:Type="Tables" />
           <EntitySet Name="PAS_RREGION" EntityType="Self.PAS_RREGION" Schema="Firebird" store:Type="Tables" />
