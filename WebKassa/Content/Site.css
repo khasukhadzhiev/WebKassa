@@ -29,3 +29,13 @@ textarea {
     max-height:400px;
     overflow:auto;
 }
+
+.inline{
+    display:inline-flex;
+}
+
+.inline input {
+    display: block;
+    margin-left:3px;
+    white-space: nowrap;
+}

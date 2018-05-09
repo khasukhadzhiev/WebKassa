@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Meters";
+}
+
+<h4>Показания прибора учета</h4>
+<hr />
+@Html.DropDownList("metersList", ViewBag.MetersList as SelectList, "Прибор учета", new { @class = "form-control" })
+
+<div id="meterResult" class="searchResult"></div>
+<script>
+    //Отправка Района чтобы получить города
+    $("#metersList").on("change", function () {
+        var meter_id = Number($("#metersList").val());
+        var abon_id = @ViewBag.DogovorId;
+        if (meter_id == "") return;
+        $.ajax({
+            type: 'POST',
+            url: '/Manage/PaysInd',
+            data: { dogovor_id: abon_id, meter_id: meter_id},
+            success: function (data) {
+                $('#meterResult').html(data);
+            },
+            error: function (xhr, str) {
+                
+            }
+        });
+    });
+</script>

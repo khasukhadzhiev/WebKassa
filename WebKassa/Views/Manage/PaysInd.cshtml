@@ -1,0 +1,30 @@
+﻿@{int i = 1;}
+<br />
+<table class="table table-hover border">
+    <thead class="thead-light">
+        <tr>
+            <th>#</th>
+            <th>Период</th>
+            <th>Показания услуг</th>
+            <th>Дата показаний</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+            <tr class="small">
+                <th scope="row">@i</th>
+                <td>@m.RPERIOD</td>
+                <td>@m.RMAXIND</td>
+                <td>@m.RLAST_DOC_DATE</td>
+            </tr>
+            i++;
+        }
+    </tbody>
+</table>
+<div class="d-inline-flex inline">
+    @Html.TextBox("zayavleno", null, new { @class = "form-control", @placeholder = "Заявлено" })
+    <input type="button" value="Сохранить" />
+    @Html.TextBox("raznost", null, new { @class = "form-control", @placeholder = "Разность" })
+</div>
+

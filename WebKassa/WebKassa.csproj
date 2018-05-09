@@ -289,6 +289,8 @@
     <Content Include="Views\Admin\Build.cshtml" />
     <Content Include="Views\Admin\SearchResult.cshtml" />
     <Content Include="Views\Manage\Payment.cshtml" />
+    <Content Include="Views\Manage\Meters.cshtml" />
+    <Content Include="Views\Manage\PaysInd.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

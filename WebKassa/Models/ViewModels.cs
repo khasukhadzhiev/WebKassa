@@ -18,10 +18,11 @@ namespace WebKassa.Models
     }
     public class KassaModel
     {
-        public short RIS_ACTIVE { get; set; }
+        public int ID { get; set; }
+        public short? RIS_ACTIVE { get; set; }
         public string RNAME { get; set; }
         public string RTARIFSTR { get; set; }
-        public decimal BALANCE { get; set; }
+        public decimal? BALANCE { get; set; }
         public string RSUPPLIER_NAME { get; set; }
     }
 }
